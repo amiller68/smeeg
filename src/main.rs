@@ -29,7 +29,13 @@ async fn main() {
     smeeg::register_panic_logger();
     smeeg::report_version();
 
-    tracing::info!("starting repl");
+    let _state = match State::from_config(&config).await {
+        Ok(s) => s,
+        Err(err) => {
+            tracing::error!("Failed to load state: {err}");
+            std::process::exit(1);
+        }
+    };
 
     let bot = Bot::new(config.telegram_bot_token().clone());
 
