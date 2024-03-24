@@ -15,8 +15,11 @@ path = "src/main.rs"
 anyhow = "1.0.81"
 chromadb = "0.4.4"
 dotenvy = "0.15.7"
+futures = "0.3.30"
 object_store = "0.9.1"
-ollama-rs = { version = "0.1.7", features = ["stream"] }
+ollama-rs = { git = "https://github.com/pepperoni21/ollama-rs", features = [
+  "stream",
+] }
 serde = "1.0.197"
 sqlx = { version = "0.7.4", features = ["sqlite", "runtime-tokio"] }
 teloxide = { version = "0.12.2", features = ["ctrlc_handler"] }
