@@ -1,0 +1,15 @@
+FROM ./data/Hermes-2-Pro-Mistral-7B.Q4_K_M.gguf
+
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>{{ end }}
+{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>{{ end }}
+{{ if .Response }}<|im_start|>system
+{{ .Response }}<|im_end|>{{ end }}
+"""
+
+SYSTEM """You are a helpful AI Chat Assistant.
+Your role is to assist users with their questions and concerns, using the resources available to you.
+"""
+
+PARAMETER stop <|im_end|>
