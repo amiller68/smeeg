@@ -31,10 +31,10 @@ impl Agent {
         let options = GenerationOptions::default();
         let options = options.stop(vec!["<|im_end|>".to_string()]);
 
-        let request =
+        let mut request =
             GenerationRequest::new("nous-hermes-2-pro".into(), input.to_string()).options(options);
         if let Some(context) = context.clone() {
-            request.clone().context(context);
+            request = request.clone().context(context);
         }
         let mut stream: GenerationResponseStream =
             self.generate_stream(request.clone()).await.unwrap();
