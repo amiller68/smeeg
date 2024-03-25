@@ -1,6 +1,12 @@
-pub mod agent;
-pub mod app;
-pub mod database;
+#[allow(dead_code)]
+mod agent;
+mod bot;
+mod config;
+mod database;
+mod state;
+mod version;
+
+pub use bot::{run, SmeegBot};
 
 /// Sets up system panics to use the tracing infrastructure to log reported issues. This doesn't
 /// prevent the panic from taking out the service but ensures that it and any available information
@@ -20,7 +26,7 @@ pub fn register_panic_logger() {
 }
 
 pub fn report_version() {
-    let version = app::Version::new();
+    let version = version::Version::new();
     tracing::info!(
         build_profile = ?version.build_profile,
         features = ?version.features,
