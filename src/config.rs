@@ -1,6 +1,6 @@
 use dotenvy::dotenv;
 use std::env;
-use tracing;
+
 use url::Url;
 
 #[derive(Debug)]

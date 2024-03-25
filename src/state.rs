@@ -26,9 +26,9 @@ impl State {
     }
 
     pub async fn from_config(config: &Config) -> Result<(Self, Bot), StateSetupError> {
-        let telegram_bot = Bot::new(&config.telegram_bot_token().to_string());
+        let telegram_bot = Bot::new(config.telegram_bot_token().to_string());
 
-        let sqlite_database = Database::connect(&config.sqlite_database_url()).await?;
+        let sqlite_database = Database::connect(config.sqlite_database_url()).await?;
 
         let chroma_database = ChromaClient::new(ChromaClientOptions {
             url: config.chroma_database_url().to_string(),
